@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My E-commerce Store</title>
+</head>
+<body>
+
+    <h1>My E-commerce Store</h1>
+
+    {% for product in products %}
+        <div>
+            <a href="{% url 'product_detail' product.id %}">
+    <h2>{{ product.name }}</h2>
+</a>
+            <p>{{ product.description }}</p>
+            <p>Price: ₹{{ product.price }}</p>
+            <p>Stock: {{ product.stock }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+</body>
+</html>
