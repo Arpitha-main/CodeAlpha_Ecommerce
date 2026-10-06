@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Confirmed 🌸</title>
+
+    <style>
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f8,
+                    #f0e4ff
+                );
+
+            color: #4a285f;
+        }
+
+        .box {
+            width: 90%;
+            max-width: 600px;
+
+            background: white;
+
+            padding: 45px 30px;
+
+            border-radius: 28px;
+
+            text-align: center;
+
+            box-shadow:
+                0 12px 40px rgba(100, 50, 120, 0.18);
+        }
+
+        .icon {
+            font-size: 70px;
+        }
+
+        h1 {
+            color: #9b3f91;
+
+            margin-bottom: 10px;
+        }
+
+        .order-number {
+            color: #806a87;
+
+            margin: 15px 0;
+        }
+
+        .total {
+            font-size: 25px;
+
+            color: #c33d8e;
+
+            font-weight: bold;
+
+            margin: 20px 0;
+        }
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+        .btn {
+            text-decoration: none;
+
+            padding: 12px 18px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+        }
+
+        .home {
+            background: #c94e9c;
+            color: white;
+        }
+
+        .orders {
+            background: #eee1f7;
+            color: #74438b;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="icon">
+        🌸
+    </div>
+
+    <h1>
+        Order Confirmed!
+    </h1>
+
+    <p>
+        Thank you for shopping with us,
+        {{ user.username }} 💗
+    </p>
+
+    <div class="order-number">
+        Order #{{ order.id }}
+    </div>
+
+    <div class="total">
+        ₹{{ order.total_price }}
+    </div>
+
+    <p>
+        Your order has been placed successfully.
+    </p>
+
+    <div class="buttons">
+
+        <a
+            href="/orders/"
+            class="btn orders"
+        >
+            📦 View Orders
+        </a>
+
+        <a
+            href="/"
+            class="btn home"
+        >
+            🛍️ Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

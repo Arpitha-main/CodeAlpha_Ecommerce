@@ -1,0 +1,274 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8fc, #f6f1ff);
+    color: #342c3d;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    background: linear-gradient(90deg, #c85bbf, #8065d9);
+    padding: 18px 8%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(120, 70, 130, 0.18);
+}
+
+nav strong {
+    font-size: 21px;
+    letter-spacing: .3px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-weight: bold;
+    transition: .2s ease;
+}
+
+nav a:hover {
+    opacity: .75;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    width: 85%;
+    max-width: 1100px;
+    margin: 40px auto 28px;
+    padding: 48px 25px;
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #fff0fa,
+        #f3edff
+    );
+
+    border: 1px solid #efd5ed;
+    border-radius: 26px;
+
+    box-shadow:
+        0 12px 35px rgba(180, 90, 170, .12);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "✿";
+    position: absolute;
+    left: 25px;
+    top: 18px;
+    font-size: 34px;
+    color: #d56bc5;
+    opacity: .7;
+}
+
+.hero::after {
+    content: "✿";
+    position: absolute;
+    right: 28px;
+    bottom: 15px;
+    font-size: 34px;
+    color: #9a7be8;
+    opacity: .7;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #a846ad;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #b957aa;
+    font-size: 18px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products {
+    width: 85%;
+    max-width: 1100px;
+    margin: 0 auto 60px;
+
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
+
+    gap: 25px;
+}
+
+/* ================= PRODUCT CARD ================= */
+
+.card {
+    background: rgba(255,255,255,.95);
+    padding: 25px;
+    border-radius: 10px;
+
+    border: 1px solid #f0d8ed;
+
+    box-shadow:
+        0 8px 25px rgba(170,90,170,.09);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 16px 35px rgba(170,90,170,.18);
+}
+
+/* PRODUCT NAME */
+
+.card h2 {
+    color: #a846ad;
+    margin-bottom: 12px;
+    font-size: 25px;
+    text-align: center;
+}
+
+/* DESCRIPTION */
+
+.card p {
+    color: #d097ff;
+    line-height: 1.6;
+    min-height: 48px;
+    text-align: center;
+}
+
+/* ================= PRICE ================= */
+
+.price {
+    font-size: 23px;
+    font-weight: bold;
+    color: #d04fb1;
+    margin: 16px 0 8px;
+    text-align: center;
+}
+
+/* ================= STOCK ================= */
+
+.stock {
+    display: block;
+    width: fit-content;
+
+    color: #35e962;
+    background: #faf1fa;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    font-size: 20px;
+
+    margin: 0 auto 16px;
+}
+
+/* ================= BUTTON ================= */
+
+.button {
+    display: block;
+    width: 60%;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    padding: 12px 18px;
+
+    background: linear-gradient(
+        90deg,
+        #d45abb,
+        #8065df
+    );
+
+    color: white;
+    text-decoration: none;
+
+    border-radius: 12px;
+    font-weight: bold;
+
+    box-shadow:
+        0 5px 15px rgba(128,101,223,.2);
+
+    transition: .2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(128,101,223,.28);
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+
+    background: white;
+
+    padding: 50px;
+
+    border-radius: 20px;
+
+    color: #777;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 16px 5%;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    nav a {
+        margin-left: 8px;
+        margin-right: 8px;
+        font-size: 14px;
+    }
+
+    .hero {
+        width: 90%;
+        padding: 38px 18px;
+    }
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .products {
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+
+    .button {
+        width: 70%;
+    }
+}

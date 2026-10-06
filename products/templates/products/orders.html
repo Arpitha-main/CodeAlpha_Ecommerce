@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders - My Store</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff7fc, #f5f0ff);
+            min-height: 100vh;
+            color: #342c3d;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: linear-gradient(90deg, #c85bbf, #7c65d9);
+            padding: 18px 8%;
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 5px 20px rgba(120, 70, 130, 0.18);
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.75;
+        }
+
+        /* MAIN AREA */
+
+        .container {
+            width: 85%;
+            max-width: 850px;
+            margin: 50px auto;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ORDER BOX */
+
+        .order-box {
+            width: 100%;
+            max-width: 650px;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            border: 1px solid #efd5ed;
+
+            box-shadow:
+                0 12px 35px rgba(180, 90, 170, 0.12);
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        /* FLOWER DECORATION */
+
+        .order-box::before {
+            content: "✿";
+
+            position: absolute;
+
+            top: 15px;
+            left: 25px;
+
+            font-size: 32px;
+
+            color: #d56bc5;
+
+            opacity: 0.7;
+        }
+
+        .order-box::after {
+            content: "✿";
+
+            position: absolute;
+
+            bottom: 15px;
+            right: 25px;
+
+            font-size: 32px;
+
+            color: #9a7be8;
+
+            opacity: 0.7;
+        }
+
+        /* HEADING */
+
+        h1 {
+            color: #a846ad;
+
+            margin-top: 5px;
+            margin-bottom: 25px;
+
+            font-size: 34px;
+        }
+
+        /* ORDER ITEM */
+
+        .order-item {
+            background: linear-gradient(
+                135deg,
+                #fff5fb,
+                #f6f1ff
+            );
+
+            border: 1px solid #efdcef;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            text-align: center;
+
+            transition: 0.2s ease;
+        }
+
+        .order-item:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 18px rgba(180, 90, 170, 0.10);
+        }
+
+        .order-item h2 {
+            margin: 0 0 12px;
+
+            color: #a846ad;
+
+            font-size: 21px;
+        }
+
+        .order-item p {
+            margin: 8px 0;
+
+            color: #666;
+
+            font-size: 16px;
+        }
+
+        /* PRICE */
+
+        .price {
+            color: #d04fb1 !important;
+
+            font-size: 20px !important;
+
+            font-weight: bold;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: inline-block;
+
+            color: #8065df !important;
+
+            background: #f7f3ff;
+
+            border: 1px solid #e4dcfa;
+
+            padding: 7px 14px;
+
+            border-radius: 9px;
+
+            font-weight: bold;
+        }
+
+        /* EMPTY ORDERS */
+
+        .empty {
+            color: #777;
+
+            font-size: 18px;
+
+            padding: 25px;
+        }
+
+        /* BACK BUTTON */
+
+        .back {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 12px 22px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d45abb,
+                    #8065df
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 11px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 5px 15px rgba(128, 101, 223, 0.20);
+
+            transition: 0.2s ease;
+        }
+
+        .back:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px rgba(128, 101, 223, 0.28);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 5%;
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                text-align: center;
+            }
+
+            .brand {
+                font-size: 23px;
+            }
+
+            .nav-links {
+                gap: 10px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .nav-links a,
+            .nav-links span {
+                font-size: 14px;
+            }
+
+            .container {
+                width: 90%;
+
+                margin: 35px auto;
+            }
+
+            .order-box {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .order-item {
+                padding: 17px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="brand">
+            🛍️ My Store
+        </div>
+
+        <div class="nav-links">
+
+            {% if user.is_authenticated %}
+
+                <span>
+                    Welcome, {{ user.username }}!
+                </span>
+
+                <a href="/orders/">
+                    📦 Orders
+                </a>
+
+                <a href="/logout/">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/login/">
+                    Login
+                </a>
+
+                <a href="/register/">
+                    Register
+                </a>
+
+            {% endif %}
+
+            <a href="/cart/">
+                🛒 Cart
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER CONTENT -->
+
+    <div class="container">
+
+        <div class="order-box">
+
+            <h1>
+                🌷 My Orders 🌷
+            </h1>
+
+
+            {% if orders %}
+
+                {% for order in orders %}
+
+                    <div class="order-item">
+
+                        <h2>
+                            Order #{{ order.id }}
+                        </h2>
+
+                        <p>
+                            <strong>Date:</strong>
+                            {{ order.created_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                        <p class="price">
+                            Total: ₹{{ order.total_price }}
+                        </p>
+
+                        <p class="status">
+                            Status: {{ order.status }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+
+            {% else %}
+
+                <div class="empty">
+
+                    🌸 You haven't placed any orders yet. 🌸
+
+                </div>
+
+            {% endif %}
+
+
+            <a href="/" class="back">
+                ← Continue Shopping
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,23 +1,428 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cart</title>
+    <meta charset="UTF-8">
+    <title>My Cart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd6ec, #ddd4ff);
+            min-height: 100vh;
+            color: #4b356d;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: linear-gradient(90deg, #c85bbf, #8065d9);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 5px 20px rgba(120, 70, 130, 0.18);
+        }
+
+        nav h2 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 50px auto;
+        }
+
+        .cart-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(100, 70, 130, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cart-box::before {
+            content: "🌷";
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            font-size: 30px;
+        }
+
+        .cart-box::after {
+            content: "🌸";
+            position: absolute;
+            right: 20px;
+            bottom: 15px;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #9b4fa8;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .flower {
+            text-align: center;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* PRODUCT */
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 5px;
+            border-bottom: 1px solid #eadcf2;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 19px;
+            font-weight: bold;
+            color: #714b91;
+            margin: 0;
+        }
+
+        .quantity {
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #9b4fa8;
+            margin-top: 8px;
+        }
+
+        .subtotal {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* ACTIONS */
+
+        .cart-actions {
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .remove-btn {
+            display: inline-block;
+            background: #ffe5f3;
+            color: #a34791;
+            text-decoration: none;
+            padding: 9px 14px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #f8cde5;
+        }
+
+        /* TOTAL */
+
+        .total-box {
+            text-align: right;
+            padding-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #6e438d;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .shop {
+            background: #eee5ff;
+            color: #714b91;
+        }
+
+        .checkout {
+            background: linear-gradient(90deg, #c85bbf, #8065d9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(128, 101, 217, 0.25);
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        /* EMPTY CART */
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 30px auto;
+            }
+
+            .cart-box {
+                padding: 25px 20px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .cart-actions {
+                min-width: auto;
+            }
+
+            .total-box {
+                text-align: center;
+            }
+        }
+        .quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.quantity-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: linear-gradient(
+        90deg,
+        #d45abb,
+        #8065df
+    );
+
+    color: white;
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    transition: .2s ease;
+}
+
+.quantity-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(128,101,223,.25);
+}
+
+.quantity {
+    min-width: 35px;
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #a846ad;
+}
+    </style>
 </head>
+
 <body>
 
-<h1>My Cart</h1>
+<nav>
 
-{% for product in products %}
-    <h2>{{ product.name }}</h2>
-    <p>₹{{ product.price }}</p>
-{% empty %}
-    <p>Your cart is empty.</p>
-{% endfor %}
-<h2>Total: ₹{{ total }}</h2>
+    <h2>🌸 My Store</h2>
 
-<a href="/">Continue Shopping</a>
+    <div>
+        <a href="/">Home</a>
+        <a href="/cart/">🛒 Cart</a>
 
-<a href="/">Continue Shopping</a>
+        {% if user.is_authenticated %}
+            <a href="/orders/">Orders</a>
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="cart-box">
+
+        <h1>🛒 My Cart</h1>
+
+        <div class="flower">
+            🌷 ✿ 🌸 ✿ 🌷
+        </div>
+
+
+        {% if cart_items %}
+
+            {% for item in cart_items %}
+
+                <div class="cart-item">
+
+                    <div class="product-info">
+
+                        <h2 class="product-name">
+                            {{ item.product.name }}
+                        </h2>
+
+                        <p class="price">
+                            ₹{{ item.product.price }} each
+                        </p>
+
+                        <p class="quantity">
+                            Quantity: {{ item.quantity }}
+                        </p>
+
+                        <p class="subtotal">
+                            Subtotal: ₹{{ item.subtotal }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-actions">
+
+                        <div class="quantity-controls">
+
+    <a
+        href="/cart/remove/{{ item.product.id }}/"
+        class="quantity-btn"
+    >
+        −1
+    </a>
+
+    <span class="quantity">
+        {{ item.quantity }}
+    </span>
+
+    <a
+        href="/cart/add/{{ item.product.id }}/"
+        class="quantity-btn"
+    >
+        +1
+    </a>
+
+</div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+
+            <div class="total-box">
+                Total: ₹{{ total }}
+            </div>
+
+
+            <div class="buttons">
+
+                <a
+                    href="/"
+                    class="button shop"
+                >
+                    ← Continue Shopping
+                </a>
+
+                <a
+                    href="/checkout/"
+                    class="button"
+                >
+                    Proceed to Checkout →
+                </a>
+
+            </div>
+
+
+        {% else %}
+
+            <div class="empty">
+
+                <p>🌸 Your cart is empty 🌸</p>
+
+                <a
+                    href="/"
+                    class="button checkout"
+                >
+                    Start Shopping
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
 
 </body>
 </html>

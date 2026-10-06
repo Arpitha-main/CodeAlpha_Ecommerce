@@ -1,17 +1,481 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>{{ product.name }}</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | My Store</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff8fc,
+                    #f6f1ff
+                );
+
+            color: #342c3d;
+
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background:
+                linear-gradient(
+                    90deg,
+                    #c85bbf,
+                    #8065d9
+                );
+
+            padding: 18px 8%;
+
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 5px 20px rgba(120,70,130,.18);
+        }
+
+        nav strong {
+            font-size: 21px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            opacity: .75;
+        }
+
+        /* PAGE */
+
+        .page {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: 55px auto;
+        }
+
+        /* PRODUCT BOX */
+
+        .product-box {
+
+            background: white;
+
+            border: 1px solid #efd5ed;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 35px rgba(180,90,170,.12);
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+        }
+
+        /* IMAGE */
+
+        .product-image-area {
+
+            min-height: 480px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0fa,
+                    #f3edff
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .product-image {
+
+            width: 100%;
+            height: 420px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(150,80,150,.12);
+        }
+
+        .no-image {
+
+            width: 100%;
+            height: 420px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 100px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0fa,
+                    #f3edff
+                );
+
+            border-radius: 18px;
+        }
+
+        /* CONTENT */
+
+        .product-content {
+
+            padding: 55px 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .product-content h1 {
+
+            color: #a846ad;
+
+            font-size: 38px;
+
+            margin-bottom: 20px;
+        }
+
+        .description {
+
+            color: #8e7895;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+        /* PRICE */
+
+        .price {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #d04fb1;
+
+            margin: 10px 0 18px;
+        }
+
+        /* STOCK */
+
+        .stock {
+
+            display: inline-block;
+
+            width: fit-content;
+
+            color: #35b957;
+
+            background: #f4fff6;
+
+            border: 1px solid #d8f2dc;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        /* BUTTON */
+
+        .button {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 14px 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d45abb,
+                    #8065df
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            transition: .2s ease;
+
+            box-shadow:
+                0 5px 15px rgba(128,101,223,.2);
+        }
+
+        .button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px rgba(128,101,223,.28);
+        }
+
+        /* BACK */
+
+        .back {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #faf1fa;
+
+            color: #a846ad;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            border: 1px solid #efd5ed;
+
+            font-weight: bold;
+        }
+
+        .back:hover {
+            background: #f5e6f5;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                text-align: center;
+            }
+
+            nav a {
+
+                margin-left: 7px;
+                margin-right: 7px;
+
+                font-size: 14px;
+            }
+
+            .product-box {
+
+                grid-template-columns: 1fr;
+            }
+
+            .product-image-area {
+
+                min-height: auto;
+            }
+
+            .product-image,
+            .no-image {
+
+                height: 300px;
+            }
+
+            .product-content {
+
+                padding: 35px 25px;
+            }
+
+            .product-content h1 {
+
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
 
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <p>Price: ₹{{ product.price }}</p>
-    <p>Stock: {{ product.stock }}</p>
-    <a href="/cart/add/{{ product.id }}/">Add to Cart</a>
 
-    <a href="/">Back to Products</a>
+<!-- NAVBAR -->
+
+<nav>
+
+    <strong>
+        🛍️ My Store
+    </strong>
+
+    <div>
+
+        {% if user.is_authenticated %}
+
+            Welcome, {{ user.username }}!
+
+            <a href="/orders/">
+                📦 Orders
+            </a>
+
+            <a href="/logout/">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="/login/">
+                Login
+            </a>
+
+            <a href="/register/">
+                Register
+            </a>
+
+        {% endif %}
+
+        <a href="/cart/">
+            🛒 Cart
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- PRODUCT -->
+
+<main class="page">
+
+    <div class="product-box">
+
+
+        <!-- IMAGE -->
+
+        <div class="product-image-area">
+
+            {% if product.image %}
+
+                <img
+                    src="{{ product.image.url }}"
+                    alt="{{ product.name }}"
+                    class="product-image"
+                >
+
+            {% else %}
+
+                <div class="no-image">
+                    🛍️
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="product-content">
+
+            <h1>
+                {{ product.name }}
+            </h1>
+
+
+            <p class="description">
+                {{ product.description }}
+            </p>
+
+
+            <div class="price">
+                ₹{{ product.price }}
+            </div>
+
+
+            {% if product.stock > 0 %}
+
+                <div class="stock">
+                    ✓ {{ product.stock }} available
+                </div>
+
+                <a
+    class="button"
+    href="/cart/add/{{ product.id }}/"
+>
+    🛒 Add to Cart
+</a>
+
+            {% else %}
+
+                <div class="stock">
+                    Out of Stock
+                </div>
+
+            {% endif %}
+
+
+            <a
+                class="back"
+                href="/"
+            >
+                ← Back to Products
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
 
 </body>
+
 </html>
