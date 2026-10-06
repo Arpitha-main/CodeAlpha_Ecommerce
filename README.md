@@ -33,4 +33,4 @@ A Django-based e-commerce website with product management, search, categories, s
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone (https://github.com/Arpitha-main/CodeAlpha_Ecommerce.git)
